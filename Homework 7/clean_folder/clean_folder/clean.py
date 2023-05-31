@@ -176,7 +176,8 @@ def should_skip(file, target_folders):
         if f'\\{folder}' in file:
             return True
 
-def main(path):
+def main():
+    path = sys.argv[1]
     target_folders = ['images', 'documents', 'audio', 'video', 'archives']
     innit_folders(path, target_folders)
     files = collect_all_files(path)
@@ -190,5 +191,4 @@ def main(path):
             handle_dir(file)
 
 
-if __name__ == '__main__':
-    main(sys.argv[1])
+main()
