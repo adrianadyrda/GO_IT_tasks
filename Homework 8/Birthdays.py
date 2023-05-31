@@ -2,8 +2,9 @@ from datetime import datetime, timedelta
 
 
 def get_birthdays_per_week(users):
-    start_date = datetime.today() - timedelta(days=2)
+    start_date = datetime.today()
     start_date = start_date + timedelta(days=(7 - start_date.weekday()))
+    start_date = start_date - timedelta(days=2)
     end_date = start_date + timedelta(days=7)
     birthdays = {}
     for user in users:
