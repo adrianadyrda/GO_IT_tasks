@@ -1,4 +1,6 @@
 from datetime import datetime, timedelta
+
+
 def get_birthdays_per_week(users):
     start_date = datetime.today() - timedelta(days=2)
     start_date = start_date + timedelta(days=(7 - start_date.weekday()))
@@ -21,13 +23,4 @@ def get_birthdays_per_week(users):
         names = birthdays[date]
         names_result = ','.join(names)
         print(f'{day}: {names_result}')
-
-
-
-
-
-
-print(get_birthdays_per_week([{'name':'Bill','birthday':datetime(1998,6,11)},{'name':'Kelli','birthday':datetime(1998,10,15)}, {'name':'Jessi','birthday':datetime(2020,6,11)}]))
-
-
 
