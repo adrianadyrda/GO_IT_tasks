@@ -1,7 +1,8 @@
 from datetime import datetime, timedelta
+from typing import List, Dict
 
 
-def get_birthdays_per_week(users):
+def get_birthdays_per_week(users: List[Dict[str, str]]) -> None:
     start_date = datetime.today()
     start_date = start_date + timedelta(days=(7 - start_date.weekday()))
     start_date = start_date - timedelta(days=2)

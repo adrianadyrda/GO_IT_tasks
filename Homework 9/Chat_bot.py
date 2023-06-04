@@ -1,8 +1,9 @@
+from typing import Any, Callable
 DATA = {}
 
 
-def input_error(func):
-    def inner_func(command):
+def input_error(func: Callable) -> Callable:
+    def inner_func(command: str) -> Any:
         try:
             result = func(command)
             return result
@@ -16,7 +17,7 @@ def input_error(func):
 
 
 @input_error
-def add_name(command):
+def add_name(command: str) -> None:
     info = command.split()
     name = info[1]
     phone = info[2]
@@ -24,7 +25,7 @@ def add_name(command):
 
 
 @input_error
-def change_name(command):
+def change_name(command: str) -> None:
     info = command.split()
     name = info[1]
     phone = info[2]
@@ -35,14 +36,13 @@ def change_name(command):
 
 
 @input_error
-def get_phone(command):
+def get_phone(command: str) -> str:
     name = command.split()[1]
     phone = DATA[name]
     return phone
 
 
-def main():
-
+def main() -> None:
     while True:
         command = input().lower()
         if command in ["good bye", "close", "exit"]:
