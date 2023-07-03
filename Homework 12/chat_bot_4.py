@@ -120,6 +120,29 @@ class AddressBook(UserDict):
                 )
                 self.add_record(record=record)
 
+    def search_by_name(self, text: str) -> List[Record]:
+        result = []
+        for key in self.data.keys():
+            if text in key:
+                result.append(self.data[key])
+        return result
+
+    def search_by_phone(self, digits: str) -> List[Record]:
+        result = []
+        for key in self.data.keys():
+            phones = self.data[key].phones
+            for phone in phones:
+                if digits in phone.value:
+                    result.append(self.data[key])
+        return result
+
+    def search_by_birthday(self, text: str) -> List[Record]:
+        result = []
+        for key in self.data.keys():
+            if text in self.data[key].birthday.value:
+                result.append(self.data[key])
+        return result
+
 
 class Iterable:
     def __init__(self, address_book: Dict, n: int):
@@ -153,7 +176,7 @@ if __name__ == '__main__':
     rec5 = Record(name="Test4", phones=["+3805555555"], birthday='11/11/2022')
     rec6 = Record(name="Test5", phones=["+3805555555"], birthday='11/11/2022')
     rec7 = Record(name="Test6", phones=["+3805555555"], birthday='11/11/2022')
-    rec8 = Record(name="Test7", phones=["+3805555555"], birthday='11/11/2022')
+    rec8 = Record(name="Test7", phones=["+3805555544"], birthday='11/11/2022')
 
     ad.add_record(rec1)
     ad.add_record(rec2)
@@ -167,3 +190,18 @@ if __name__ == '__main__':
         print(records)
     print(ad["Test"].days_to_birthday())
     ad.write_address_book()
+    print("Tes")
+    print(ad.search_by_name("Tes"))
+    print("t5")
+    print(ad.search_by_name("t5"))
+    print("44")
+    print(ad.search_by_phone("44"))
+    print("55")
+    print(ad.search_by_phone("55"))
+    print("123")
+    print(ad.search_by_phone("123"))
+    print("11/")
+    print(ad.search_by_birthday("11/"))
+    print("12/")
+    print(ad.search_by_birthday("12/"))
+
